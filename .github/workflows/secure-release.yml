@@ -14,6 +14,9 @@ on:
   push:
     branches: [main]
     tags: ['v*']
+    paths-ignore:
+      - 'supply-chain/runbook/**'
+      - '**/*.md'
   workflow_dispatch:
 
 permissions:
