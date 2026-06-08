@@ -27,9 +27,21 @@ table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}
 th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
 th{background:#eef0f3}
 
-/* ---- Claude Code terminal ---- */
-.cc{margin:18px 0;background:#1c1c1c;border:1px solid #303030;border-radius:12px;padding:14px 16px 12px;
-  box-shadow:0 10px 34px rgba(0,0,0,.30);
+/* ---- macOS window frame ---- */
+.mac{margin:20px 0;border-radius:11px;overflow:hidden;border:1px solid #34343a;
+  box-shadow:0 16px 44px rgba(0,0,0,.34),0 2px 6px rgba(0,0,0,.22)}
+.bar{position:relative;height:38px;display:flex;align-items:center;padding:0 13px;
+  background:linear-gradient(#3a3a3c,#2f2f31);border-bottom:1px solid #1d1d1f}
+.dots{display:flex;gap:8px}
+.dots i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dots .rd{background:#ff5f57;box-shadow:inset 0 0 0 .5px #e0443e}
+.dots .yl{background:#febc2e;box-shadow:inset 0 0 0 .5px #d89e24}
+.dots .gn{background:#28c840;box-shadow:inset 0 0 0 .5px #1aab29}
+.bt{position:absolute;left:0;right:0;text-align:center;color:#9a9a9e;font-size:12.5px;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;pointer-events:none}
+
+/* ---- Claude Code terminal body ---- */
+.cc{background:#1c1c1c;padding:14px 16px 12px;
   font-family:'SF Mono',Menlo,Monaco,monospace;font-size:12.5px;line-height:1.62;color:#cdcdcd}
 .welcome{border:1px solid #3a3a3a;border-radius:9px;padding:10px 13px;margin-bottom:12px;color:#bdbdbd}
 .welcome b{color:#ececec;font-weight:600}
@@ -63,13 +75,16 @@ browser steps are real screenshots.</p>
 <h2><span class=num>1.</span> Download &amp; provenance-verify cilock <span class="tag t-term">terminal</span></h2>
 <p>No <code>curl | bash</code>. Checksum-verify the archive against the signed manifest, then verify the
 binary's <em>own</em> provenance against the platform-signed release policy.</p>
-<div class="cc">
-  <div class="welcome">
-    <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
-    <div class="wsub">/help for help, /status for your current setup</div>
-    <div class="wsub">cwd: ~/proj/hugo-internal</div>
-  </div>
-  <div class="conv"><div class="ln u">&gt; Download the latest cilock and verify it before I trust it</div>
+<div class="mac">
+  <div class="bar"><span class="dots"><i class="rd"></i><i class="yl"></i><i class="gn"></i></span>
+    <span class="bt">claude — ~/proj/hugo-internal — 120×32</span></div>
+  <div class="cc">
+    <div class="welcome">
+      <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
+      <div class="wsub">/help for help, /status for your current setup</div>
+      <div class="wsub">cwd: ~/proj/hugo-internal</div>
+    </div>
+    <div class="conv"><div class="ln u">&gt; Download the latest cilock and verify it before I trust it</div>
 <div class="ln"><span class="bu">⏺</span> I won&#x27;t pipe the installer to bash. I&#x27;ll checksum-verify the archive against</div>
 <div class="ln cont">the signed manifest, then verify the binary&#x27;s own provenance via Archivista.</div>
 <div class="ln gap">&nbsp;</div>
@@ -83,8 +98,9 @@ binary's <em>own</em> provenance against the platform-signed release policy.</p>
 <div class="ln r green rc">verified: sha256:368797cf… bound to step &quot;build&quot; leaf &quot;cilock&quot;</div>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> cilock 3.0.0 is provenance-verified, not just checksum-matched. Installed.</div></div>
-  <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;download and verify cilock&quot;</span></div>
-  <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+    <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;download and verify cilock&quot;</span></div>
+    <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+  </div>
 </div>
 
 <h2><span class=num>2.</span> Fork (clone) Hugo <span class="tag t-term">terminal</span></h2>
@@ -95,13 +111,16 @@ binary's <em>own</em> provenance against the platform-signed release policy.</p>
 <p>One script wraps every stage in <code>cilock run</code>/<code>attest</code>, signs a Witness policy,
 and gates the binary — fully offline with a local ECDSA P-256 key. Verdict at this tier:
 <strong>SLSA Build L1</strong> + the cryptographic content of L2.</p>
-<div class="cc">
-  <div class="welcome">
-    <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
-    <div class="wsub">/help for help, /status for your current setup</div>
-    <div class="wsub">cwd: ~/proj/hugo-internal</div>
-  </div>
-  <div class="conv"><div class="ln u">&gt; Create a secure supply chain for the Hugo fork</div>
+<div class="mac">
+  <div class="bar"><span class="dots"><i class="rd"></i><i class="yl"></i><i class="gn"></i></span>
+    <span class="bt">claude — ~/proj/hugo-internal — 120×32</span></div>
+  <div class="cc">
+    <div class="welcome">
+      <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
+      <div class="wsub">/help for help, /status for your current setup</div>
+      <div class="wsub">cwd: ~/proj/hugo-internal</div>
+    </div>
+    <div class="conv"><div class="ln u">&gt; Create a secure supply chain for the Hugo fork</div>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> <span class="tool">Bash(bash supply-chain/secure-release.sh)</span></div>
 <div class="ln r dim"><span class="br">⎿</span>  1/7 source — pin commit + build env</div>
@@ -119,20 +138,24 @@ and gates the binary — fully offline with a local ECDSA P-256 key. Verdict at 
 <div class="ln r dim rc">bundles              : 5 signed stages</div>
 <div class="ln r dim rc">sbom components      : 110</div>
 <div class="ln r green rc">PIPELINE OK</div></div>
-  <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;secure the supply chain&quot;</span></div>
-  <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+    <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;secure the supply chain&quot;</span></div>
+    <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+  </div>
 </div>
 
 <h2><span class=num>4.</span> Red-team the gate — prove fail-closed <span class="tag t-term">terminal</span></h2>
 <p>A gate you haven't tried to break is a claim, not a control. Mutate the binary by one byte
 and confirm it's rejected <em>for the right reason</em>.</p>
-<div class="cc">
-  <div class="welcome">
-    <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
-    <div class="wsub">/help for help, /status for your current setup</div>
-    <div class="wsub">cwd: ~/proj/hugo-internal</div>
-  </div>
-  <div class="conv"><div class="ln u">&gt; Before you call it done, prove the gate actually rejects tampering</div>
+<div class="mac">
+  <div class="bar"><span class="dots"><i class="rd"></i><i class="yl"></i><i class="gn"></i></span>
+    <span class="bt">claude — ~/proj/hugo-internal — 120×32</span></div>
+  <div class="cc">
+    <div class="welcome">
+      <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
+      <div class="wsub">/help for help, /status for your current setup</div>
+      <div class="wsub">cwd: ~/proj/hugo-internal</div>
+    </div>
+    <div class="conv"><div class="ln u">&gt; Before you call it done, prove the gate actually rejects tampering</div>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> <span class="tool">Bash(cp dist/hugo /tmp/t &amp;&amp; printf &#x27;X&#x27; &gt;&gt; /tmp/t &amp;&amp; cilock verify /tmp/t …)</span></div>
 <div class="ln r red"><span class="br">⎿</span>  Verification failed</div>
@@ -146,21 +169,25 @@ and confirm it's rejected <em>for the right reason</em>.</p>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> Fail-closed for the right reason: the honest digest 4747f175… is the attested</div>
 <div class="ln cont">go-build subject; the tampered digest is not. Not a spurious file-not-found.</div></div>
-  <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;red-team the gate&quot;</span></div>
-  <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+    <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;red-team the gate&quot;</span></div>
+    <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+  </div>
 </div>
 
 <h2><span class=num>5.</span> Authenticate to the platform <span class="tag t-browser">browser</span></h2>
 <p>To upgrade to keyless signing + Archivista storage, sign in. Open the approve page in a
 <strong>private / incognito window</strong>. <code>--allow-trust</code> requests the narrow
 <code>oidc:write</code> scope used in Step 6.</p>
-<div class="cc">
-  <div class="welcome">
-    <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
-    <div class="wsub">/help for help, /status for your current setup</div>
-    <div class="wsub">cwd: ~/proj/hugo-internal</div>
-  </div>
-  <div class="conv"><div class="ln u">&gt; Authenticate to the platform — use a private window</div>
+<div class="mac">
+  <div class="bar"><span class="dots"><i class="rd"></i><i class="yl"></i><i class="gn"></i></span>
+    <span class="bt">claude — ~/proj/hugo-internal — 120×32</span></div>
+  <div class="cc">
+    <div class="welcome">
+      <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
+      <div class="wsub">/help for help, /status for your current setup</div>
+      <div class="wsub">cwd: ~/proj/hugo-internal</div>
+    </div>
+    <div class="conv"><div class="ln u">&gt; Authenticate to the platform — use a private window</div>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> <span class="tool">Bash(cilock login --interactive --allow-trust)</span></div>
 <div class="ln r dim"><span class="br">⎿</span>  Opening browser to sign in to https://platform.testifysec.com …</div>
@@ -172,8 +199,9 @@ and confirm it's rejected <em>for the right reason</em>.</p>
 <div class="ln r green"><span class="br">⎿</span>  ✓ logged-in   session for tenant Default Organization</div>
 <div class="ln r green rc">✓ fulcio / tsa / archivista   reachable</div>
 <div class="ln r green rc">✓ upload-auth  login session will authorize uploads</div></div>
-  <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;log in to the platform&quot;</span></div>
-  <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+    <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;log in to the platform&quot;</span></div>
+    <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+  </div>
 </div>
 <p>On the approve page, pick the <strong>Organization</strong> and a <strong>Product</strong>
 (attestations bind to a product), keep <strong>"Allow this session to register CI trust"</strong>
@@ -193,21 +221,25 @@ dedicated <code>hugo</code> product.</div>
 then the workflow build is keyless: cilock-action mints a fresh OIDC token, gets a short-lived Fulcio
 cert, signs, and stores in Archivista — signing material never reaches the build steps. That isolation
 earns <strong>L2 (hosted builder)</strong> and <strong>L3 (non-falsifiable provenance)</strong>.</p>
-<div class="cc">
-  <div class="welcome">
-    <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
-    <div class="wsub">/help for help, /status for your current setup</div>
-    <div class="wsub">cwd: ~/proj/hugo-internal</div>
-  </div>
-  <div class="conv"><div class="ln u">&gt; Now federate the CI identity and wire keyless L3</div>
+<div class="mac">
+  <div class="bar"><span class="dots"><i class="rd"></i><i class="yl"></i><i class="gn"></i></span>
+    <span class="bt">claude — ~/proj/hugo-internal — 120×32</span></div>
+  <div class="cc">
+    <div class="welcome">
+      <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
+      <div class="wsub">/help for help, /status for your current setup</div>
+      <div class="wsub">cwd: ~/proj/hugo-internal</div>
+    </div>
+    <div class="conv"><div class="ln u">&gt; Now federate the CI identity and wire keyless L3</div>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> <span class="tool">Bash(cilock trust github testifysec/hugo --verify)</span></div>
 <div class="ln r green"><span class="br">⎿</span>  registered OIDC federation (no long-lived secret created)</div>
 <div class="ln r dim rc">subject:  repo:testifysec/hugo:*</div>
 <div class="ln r dim rc">audience: https://platform.testifysec.com/archivista</div>
 <div class="ln r dim rc">scopes:   attestation:upload, attestation:read</div></div>
-  <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;trust the CI identity&quot;</span></div>
-  <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+    <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;trust the CI identity&quot;</span></div>
+    <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+  </div>
 </div>
 <p>The workflow is deliberately minimal — everything except the attestor list derives from defaults
 (platform URL, keyless Fulcio, Archivista storage). The one non-obvious requirement is
@@ -229,13 +261,16 @@ earns <strong>L2 (hosted builder)</strong> and <strong>L3 (non-falsifiable prove
           <span class=hl>attestations: environment git github slsa</span>   <span class=c># only override</span></pre>
 <p>The attestation it produces is keyless and tied to the build's own identity — no shared secret,
 no long-lived key:</p>
-<div class="cc">
-  <div class="welcome">
-    <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
-    <div class="wsub">/help for help, /status for your current setup</div>
-    <div class="wsub">cwd: ~/proj/hugo-internal</div>
-  </div>
-  <div class="conv"><div class="ln u">&gt; Prove the CI attestation is keyless and from an isolated builder</div>
+<div class="mac">
+  <div class="bar"><span class="dots"><i class="rd"></i><i class="yl"></i><i class="gn"></i></span>
+    <span class="bt">claude — ~/proj/hugo-internal — 120×32</span></div>
+  <div class="cc">
+    <div class="welcome">
+      <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
+      <div class="wsub">/help for help, /status for your current setup</div>
+      <div class="wsub">cwd: ~/proj/hugo-internal</div>
+    </div>
+    <div class="conv"><div class="ln u">&gt; Prove the CI attestation is keyless and from an isolated builder</div>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> <span class="tool">Bash(openssl x509 -in fulcio.pem -noout -text   # cert on the CI envelope)</span></div>
 <div class="ln r green"><span class="br">⎿</span>  issuer:  CN=TestifySec Platform Fulcio CA</div>
@@ -246,8 +281,9 @@ no long-lived key:</p>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> Keyless: a short-lived Fulcio cert, not a stored key. Identity is the workflow</div>
 <div class="ln cont">itself, on a github-hosted runner the build steps can&#x27;t reach — SLSA Build L3.</div></div>
-  <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;prove the build is keyless&quot;</span></div>
-  <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+    <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;prove the build is keyless&quot;</span></div>
+    <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+  </div>
 </div>
 <p>The build runs green on a hosted runner; the signed attestation is stored in Archivista (the
 action fails the step if that upload fails):</p>
@@ -262,13 +298,16 @@ Fulcio CA <code>TestifySec Platform Fulcio CA</code>, OIDC issuer
 <code>token.actions.githubusercontent.com</code>, source repo <code>testifysec/hugo</code>, runner
 <code>github-hosted</code>. The build then verifies its own binary against that policy and fails
 closed if it doesn't match:</p>
-<div class="cc">
-  <div class="welcome">
-    <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
-    <div class="wsub">/help for help, /status for your current setup</div>
-    <div class="wsub">cwd: ~/proj/hugo-internal</div>
-  </div>
-  <div class="conv"><div class="ln u">&gt; Show the verification step — gate the build on its own provenance</div>
+<div class="mac">
+  <div class="bar"><span class="dots"><i class="rd"></i><i class="yl"></i><i class="gn"></i></span>
+    <span class="bt">claude — ~/proj/hugo-internal — 120×32</span></div>
+  <div class="cc">
+    <div class="welcome">
+      <div><span class="spark">✻</span> Welcome to <b>Claude Code</b></div>
+      <div class="wsub">/help for help, /status for your current setup</div>
+      <div class="wsub">cwd: ~/proj/hugo-internal</div>
+    </div>
+    <div class="conv"><div class="ln u">&gt; Show the verification step — gate the build on its own provenance</div>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> <span class="tool">Bash(cilock verify dist/hugo -p hugo-build.policy.signed.json \</span></div>
 <div class="ln r dim rc">  -k release.pub -a build.attestation.json --platform-url &quot;&quot;)</div>
@@ -282,8 +321,9 @@ closed if it doesn't match:</p>
 <div class="ln gap">&nbsp;</div>
 <div class="ln"><span class="bu">⏺</span> Passes only if dist/hugo is an attested product of THIS workflow&#x27;s keyless</div>
 <div class="ln cont">identity. Tamper the binary or forge the signer → non-zero exit, build blocked.</div></div>
-  <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;gate the build on provenance&quot;</span></div>
-  <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+    <div class="pbox"><span class="chev">&gt;</span> <span class="ph">Try &quot;gate the build on provenance&quot;</span></div>
+    <div class="hint"><span>? for shortcuts</span><span class="acc">⏵⏵ accept edits on</span></div>
+  </div>
 </div>
 <p>The policy itself is signed by the offline release key (Step 3); the <em>attestation</em> it trusts
 is the keyless CI identity. That separation — operator-signed policy, build-signed evidence — is the
