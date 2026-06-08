@@ -162,14 +162,14 @@ provenance)** that the local key in Step 3 cannot.
 ```yaml
 permissions:
   contents: read
-  id-token: write            # required for keyless OIDC -> platform Fulcio
+  id-token: write            # the only non-obvious requirement: keyless OIDC -> Fulcio
 # ...
 - uses: aflock-ai/cilock-action@<pinned-sha>   # v1
   with:
     step: build
     command: go build -trimpath -o dist/hugo .
-    attestations: environment git github go-build slsa secretscan lockfiles
-    platform-url: https://platform.testifysec.com
+    attestations: environment git github slsa   # only override vs defaults
+    # platform-url, keyless Fulcio, and Archivista storage all default correctly
 ```
 
 ---
