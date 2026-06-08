@@ -1,0 +1,7 @@
+# never commit the offline signer's PRIVATE key (proof-only, regenerate per host)
+keys/release.key
+# generated per-run evidence (reproduce with secure-release.sh)
+bundles/
+policy/
+sbom/
+scans/

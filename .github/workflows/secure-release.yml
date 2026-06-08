@@ -1,0 +1,59 @@
+name: secure-release
+
+# Keyless, platform-signed attested build of the hugo binary on an isolated
+# GitHub-hosted runner. cilock-action mints a fresh OIDC token, gets a
+# short-lived Fulcio cert, signs the in-toto attestation, and stores it in
+# Archivista. The signing material is never exposed to the build steps — this
+# is the isolated-builder property that earns SLSA Build L2/L3.
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write          # REQUIRED: ambient OIDC -> platform Fulcio (keyless)
+
+jobs:
+  attested-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
+
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff  # v5
+        with:
+          go-version: '1.26'
+          cache: true
+
+      - name: Attested build (keyless, platform-signed)
+        uses: aflock-ai/cilock-action@d39bb9b17e392520f9e7eef17cf355c027a5c283  # v1
+        with:
+          step: build
+          command: go build -trimpath -o dist/hugo .
+          attestations: environment git github go-build slsa secretscan lockfiles
+          platform-url: https://platform.testifysec.com
+          attestor-slsa-export: 'true'
+          outfile: build.attestation.json
+
+      - name: Attested SBOM (CycloneDX of the binary)
+        uses: aflock-ai/cilock-action@d39bb9b17e392520f9e7eef17cf355c027a5c283  # v1
+        with:
+          step: sbom
+          command: >-
+            sh -c 'syft scan file:dist/hugo -o cyclonedx-json=hugo.cdx.json -q || true'
+          attestations: environment sbom
+          platform-url: https://platform.testifysec.com
+          attestor-sbom-export: 'true'
+          outfile: sbom.attestation.json
+
+      - name: Upload signed envelopes
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
+        with:
+          name: cilock-attestations
+          path: |
+            *.attestation.json
+            hugo.cdx.json
+          if-no-files-found: warn
