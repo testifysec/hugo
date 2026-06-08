@@ -37,3 +37,21 @@ jobs:
           step: build
           command: go build -trimpath -o dist/hugo .
           attestations: environment git github slsa
+          outfile: build.attestation.json
+
+      - name: Install cilock (pinned + checksum-verified, no curl|bash)
+        run: |
+          cd "$RUNNER_TEMP"
+          curl -fsSLO https://cilock.dev/dl/v3.0.0/cilock-3.0.0-linux-amd64.tar.gz
+          echo "e228589d03af001b8bfe91535f382a8f2ec611726f21552973c6c4086a63dd3e  cilock-3.0.0-linux-amd64.tar.gz" | sha256sum -c -
+          tar -xzf cilock-3.0.0-linux-amd64.tar.gz
+          sudo install -m0755 cilock /usr/local/bin/cilock
+          cilock version
+
+      - name: Verify provenance gate (binary must be an attested product of THIS workflow)
+        run: |
+          cilock verify dist/hugo \
+            --policy       supply-chain/gates/hugo-build.policy.signed.json \
+            --publickey    supply-chain/keys/release.pub \
+            --attestations build.attestation.json \
+            --platform-url ""
